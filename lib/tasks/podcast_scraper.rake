@@ -27,7 +27,7 @@ namespace :podcasts do
       ep_show_page = agent.get(ep_url)
       image_url = ep_show_page.search('.mainImage img').attr('src')
 
-      episode = Episode.find_by_title(title)
+      episode = Episode.find_by(title: title)
       if episode.blank?
         episode = Episode.new
         episode.title = title
