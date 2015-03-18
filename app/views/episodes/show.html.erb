@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @episode.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @episode.desc %>
+</p>
+
+<p>
+  <strong>Dl link:</strong>
+  <%= @episode.dl_link %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @episode.image_url %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @episode.date %>
+</p>
+
+<p>
+  <strong>Ep url:</strong>
+  <%= @episode.ep_url %>
+</p>
+
+<%= link_to 'Edit', edit_episode_path(@episode) %> |
+<%= link_to 'Back', episodes_path %>
