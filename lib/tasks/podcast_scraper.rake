@@ -16,14 +16,27 @@ namespace :podcasts do
     episodes.each do |ep|
       title = ep.search('h2.title').text
       desc = ep.search('.teaser').text
+      dl_link = ep.search('.download a').attr('href').text
 
       # pulling out attributes
       # link_url = ep.search('a').attr('href')
 
-      episode = Episode.new
-      episode.title = title
-      episode.desc = desc
-      episode.save
+      ep_url = ep.search('a').attr('href').text
+      date =  Date.parse(ep_url.split("showDate=").last)
+
+      ep_show_page = agent.get(ep_url)
+      image_url = ep_show_page.search('.mainImage img').attr('src')
+
+      episode = Episode.find_by_title(title)
+      if episode.blank?
+        episode = Episode.new
+        episode.title = title
+        episode.desc = desc
+        episode.date = date
+        episode.dl_link = dl_link
+        episode.image_url = image_url
+        episode.save
+      end
     end
 
 
